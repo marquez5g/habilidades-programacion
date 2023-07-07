@@ -5,6 +5,7 @@ import com.empresa.empleados.services.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employee")
@@ -29,6 +30,17 @@ public class EmployeeController {
     @GetMapping
     public List<Employee> getAllEmployees() {
         return employeeService.getAll();
+    }
+
+
+    @GetMapping("/{id}")
+    public Optional<Employee> getEmployee(@PathVariable Long id) {
+        return employeeService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEmployee(@PathVariable Long id) {
+        employeeService.deleteById(id);
     }
 
 
